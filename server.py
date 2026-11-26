@@ -282,7 +282,7 @@ class Handler(BaseHTTPRequestHandler):
     protocol_version = "HTTP/1.1"
 
     def log_message(self, fmt, *args):
-        print("[%s] %s" % (self.log_date_time_string(), fmt % args))
+        return
 
     def do_GET(self):
         path = unquote(urlparse(self.path).path)
@@ -488,7 +488,6 @@ def main():
     url = "http://%s:%s" % (HOST, PORT)
     print("今天做什么已启动：%s" % url)
     print("使用中的数据保存在 %s" % STATE_FILE)
-    print("关闭这个窗口后，到点提醒会停止。")
     if os.environ.get("OPEN_BROWSER") == "1":
         threading.Timer(0.4, lambda: webbrowser.open(url)).start()
     try:
